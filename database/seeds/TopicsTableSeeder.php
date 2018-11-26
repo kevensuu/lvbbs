@@ -24,6 +24,11 @@ class TopicsTableSeeder extends Seeder
                 'topics_id' =>$i,
                 'topics_content' => '内容'.str_random(20),
             ]);
+
+            DB::table('topics_dynamics')->insert([
+                'topics_id' =>$i,
+                'views' =>mt_rand(0, 1000),
+            ]);
         }
     }
 }
