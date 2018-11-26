@@ -13,6 +13,8 @@ class CreateCommentsTable extends Migration
      */
     public function up()
     {
+        $this->down();
+
         for($i=0;$i<8;$i++)
         {
             Schema::create("comments_{$i}", function (Blueprint $table) {
@@ -36,6 +38,9 @@ class CreateCommentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('comments');
+        for($i=0;$i<8;$i++)
+        {
+            Schema::dropIfExists("comments_{$i}");
+        }
     }
 }
