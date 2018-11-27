@@ -16,8 +16,10 @@ class CreateCategorysTable extends Migration
         Schema::create('categorys', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('pid')->unsigned()->default(0);
+            $table->string('path', 128)->default('');
             $table->string('title', 32)->default('');
             $table->timestamps();
+            $table->index('path', 'idx_path');
         });
     }
 

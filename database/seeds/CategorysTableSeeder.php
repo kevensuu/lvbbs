@@ -13,16 +13,19 @@ class CategorysTableSeeder extends Seeder
     {
         for($i=1;$i<=5;$i++)
         {
-            DB::table('categorys')->insert([
+            $id = DB::table('categorys')->insertGetId([
                 'pid' => 0,
                 'title' => '分类'.$i,
+                'path'=>"0",
             ]);
 
-            for ($j=1;$j<=2;$j++)
+            $num = mt_rand(5,15);
+            for ($j=1;$j<=$num;$j++)
             {
                 DB::table('categorys')->insert([
-                    'pid' => $i,
+                    'pid' => $id,
                     'title' => "分类-{$i}-{$j}",
+                    'path'=>"0-{$id}",
                 ]);
             }
         }
