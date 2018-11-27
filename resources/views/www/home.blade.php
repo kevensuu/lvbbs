@@ -43,7 +43,7 @@
                 @endforeach
             </div>
         </div>
-        <div class="card-footer hidden-mobile"><a href="/topics/excellent">查看更多帖子...</a></div>
+        <div class="card-footer hidden-mobile"><a href="{{route('topics.newest')}}">查看更多帖子...</a></div>
     </div>
 
     <div class="index-sections card">

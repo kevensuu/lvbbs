@@ -11,6 +11,8 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
+    public $pageType = '';
+
     public function display($pathName, array $data=array())
     {
         return view($pathName, $data);

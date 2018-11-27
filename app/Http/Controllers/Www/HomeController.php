@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers\Www;
 
-use function Amp\Iterator\concat;
 use App\Models\Categorys;
 use App\Models\Topics;
 use App\Models\TopicsDynamics;
 
 class HomeController extends BaseController
 {
+    public $pageType = 'home';
+
     public function show()
     {
         $lastTime = date('Y-m-d H:i:s', strtotime('-30 days'));
@@ -41,7 +42,7 @@ class HomeController extends BaseController
             $tmp[$value['pid']]['sonNodes'][] = $value;
         }
         $data['allNodes'] = $tmp;
-        
+
         return $this->display('www.home', $data);
     }
 }
