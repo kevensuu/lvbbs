@@ -14,3 +14,12 @@
 Auth::routes();
 
 Route::get('/', 'Www\HomeController@show')->name('home');
+
+Route::get('/ucenter/{id}.html', 'Www\UsersController@center')->name('ucenter')->where(['id' => '[0-9]+']);
+
+Route::get('/topics/node-{id}.html', 'Www\TopicsController@nodes')->name('topics.list')->where(['id' => '[0-9]+']);
+Route::get('/topics/{id}.html', 'Www\TopicsController@detail')->name('topics.detail')->where(['id' => '[0-9]+']);
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

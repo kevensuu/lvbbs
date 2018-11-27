@@ -17,17 +17,18 @@ class TopicsTableSeeder extends Seeder
             DB::table('topics')->insert([
                 'categorys_id' =>$categorys_ids[array_rand($categorys_ids)],
                 'users_id' => mt_rand(1, 20),
+                'last_comment_users_id' => mt_rand(1, 20),
                 'title' => '标题'.str_random(20),
+                'views' =>mt_rand(0, 1000),
+                'likes' =>mt_rand(0, 1000),
+                'favorites' =>mt_rand(0, 1000),
+                'created_at' =>date('Y-m-d H:i:s'),
+                'last_comment_at' =>date('Y-m-d H:i:s'),
             ]);
 
             DB::table('topics_details')->insert([
                 'topics_id' =>$i,
                 'topics_content' => '内容'.str_random(20),
-            ]);
-
-            DB::table('topics_dynamics')->insert([
-                'topics_id' =>$i,
-                'views' =>mt_rand(0, 1000),
             ]);
         }
     }

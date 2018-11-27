@@ -13,11 +13,13 @@ class UsersTableSeeder extends Seeder
     {
         for ($i=0;$i<20;$i++)
         {
-            DB::table('users')->insert([
+            $data = [
                 'name' => str_random(10),
                 'email' => str_random(10).'@gmail.com',
                 'password' => bcrypt('secret'),
-            ]);
+            ];
+            $data['face'] = config('app.static_url').'/default-avatar/'.strtoupper(substr($data['name'], 0, 1)).'.png';
+            DB::table('users')->insert($data);
         }
     }
 }
