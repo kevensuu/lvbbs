@@ -26,22 +26,7 @@ class HomeController extends BaseController
             ->limit(10)
             ->get();
 
-        $allNodes = Categorys::selectRaw("id,title,pid,concat(path,'-',id) as fullpath")
-            ->orderBy('fullpath', 'asc')
-            ->get()->toArray();
-        $tmp = [];
-        foreach ($allNodes as $value)
-        {
-            if(!$value['pid'])
-            {
-                $value['sonNodes'] = [];
-                $tmp[$value['id']] = $value;
-                continue;
-            }
-
-            $tmp[$value['pid']]['sonNodes'][] = $value;
-        }
-        $data['allNodes'] = $tmp;
+        $data['allNodes'] = Categorys::allNodes();
 
         return $this->display('www.home', $data);
     }

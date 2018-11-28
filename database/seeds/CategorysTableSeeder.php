@@ -16,6 +16,7 @@ class CategorysTableSeeder extends Seeder
             $id = DB::table('categorys')->insertGetId([
                 'pid' => 0,
                 'title' => '分类'.$i,
+                'summary' => 'summary-'.$i,
                 'path'=>"0",
             ]);
 
@@ -25,6 +26,7 @@ class CategorysTableSeeder extends Seeder
                 DB::table('categorys')->insert([
                     'pid' => $id,
                     'title' => "分类-{$i}-{$j}",
+                    'summary' => "分类summary-{$i}-{$j}",
                     'path'=>"0-{$id}",
                 ]);
             }

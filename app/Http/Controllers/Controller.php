@@ -11,10 +11,12 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-    public $pageType = '';
+    public $pageType = 'home';
 
     public function display($pathName, array $data=array())
     {
+        $data['pageType'] = $this->pageType;
+
         return view($pathName, $data);
     }
 }

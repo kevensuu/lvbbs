@@ -18,6 +18,7 @@ class CreateCategorysTable extends Migration
             $table->integer('pid')->unsigned()->default(0);
             $table->string('path', 128)->default('');
             $table->string('title', 32)->default('');
+            $table->string('summary', 256)->default('');
             $table->timestamps();
             $table->index('path', 'idx_path');
         });

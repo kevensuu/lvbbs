@@ -55,7 +55,7 @@
                     <label class="mr-2 media-left">{{$value['title']}}</label>
                     @if(isset($value['sonNodes']) && $value['sonNodes'])
                     <span class="nodes media-body">
-                        @foreach($value['sonNodes'] as $v)<span class="name"><a title="{{$v['title']}}" data-id="{{$v['id']}}" href="{{route('topics.list', ['id'=>$v['id']])}}">{{$v['title']}}</a></span>@endforeach
+                        @foreach($value['sonNodes'] as $v)<span class="name"><a title="{{$v['title']}}" data-id="{{$v['id']}}" href="{{route('topics.nodes', ['id'=>$v['id']])}}">{{$v['title']}}</a></span>@endforeach
                     </span>
                     @endif
                 </div>

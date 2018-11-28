@@ -22,4 +22,9 @@ class Topics extends Model
     {
         return $this->belongsTo('App\Models\User', 'last_comment_users_id', 'id');
     }
+
+    public function hasoneTopicsDetail()
+    {
+        return $this->hasOne('App\Models\TopicsDetail', 'topics_id', 'id');
+    }
 }
