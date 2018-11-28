@@ -23,7 +23,7 @@
                             </div>
                         @endforeach
                     </div>
-                    <div class="card-footer clearfix">{{$topicsList->links()}}</div>
+                    <div class="card-footer clearfix">{!! $fpage !!}</div>
                 </div>
             </div>
             @include('www.topics.right')
