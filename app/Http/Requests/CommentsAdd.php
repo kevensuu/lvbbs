@@ -25,7 +25,7 @@ class CommentsAdd extends FormRequest
     {
         return [
             'topics_id' => 'required|integer|gt:0',
-            'comment_content' => 'required|max:1280',
+            'comment_content' => 'required|max:100000',
         ];
     }
 }

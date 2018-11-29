@@ -20,7 +20,7 @@ class CommentsTableSeeder extends Seeder
             DB::table($table)->insertGetId([
                 'topics_id' => $topics_id,
                 'users_id' => $users_id,
-                'quote_id'=>0,
+                'quote_comments_id'=>0,
                 'floor'=>$i,
                 'content'=>'回复内容'.str_random(20),
                 'created_at'=>date('Y-m-d H:i:s'),

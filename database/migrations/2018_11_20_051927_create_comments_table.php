@@ -21,7 +21,7 @@ class CreateCommentsTable extends Migration
                 $table->increments('id');
                 $table->integer('topics_id')->unsigned()->default(0);
                 $table->integer('users_id')->unsigned()->default(0);
-                $table->integer('quote_id')->unsigned()->default(0);
+                $table->integer('quote_comments_id')->unsigned()->default(0);
                 $table->integer('quote_users_id')->unsigned()->default(0);
                 $table->text('content');
                 $table->integer('floor')->unsigned()->default(0);
