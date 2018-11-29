@@ -19,4 +19,13 @@ class Controller extends BaseController
 
         return view($pathName, $data);
     }
+
+    public function outJson($code=0, $msg='', array $data=[])
+    {
+        return response()->json([
+            'code'=>$code,
+            'msg'=>$msg,
+            'data'=>$data,
+        ]);
+    }
 }

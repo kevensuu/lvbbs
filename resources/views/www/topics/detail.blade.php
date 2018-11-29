@@ -84,45 +84,26 @@
                             <a href="#" class="close"><i class="fa fa-close"></i></a>
                         </div>
                         <div class="opts">
-                            <a href="#" class="nav-link pickup-emoji"><i class="fa fa-smile-o"></i></a>
-                            <span class="dropdown" id="dropdown-insert-codes">
-      <a href="#editor-toolbar-insert-code" class="nav-link dropdown-toggle" data-toggle="dropdown" title="插入代码"><i class="fa fa-code"></i></a>
-      <div class="dropdown-menu insert-codes" aria-labelledby="dropdown-insert-codes">
-        <a class="dropdown-item" data-lang="ruby" href="#">Ruby</a><a class="dropdown-item" data-lang="erb" href="#">HTML / ERB</a><a class="dropdown-item" data-lang="scss" href="#">CSS / SCSS</a><a class="dropdown-item" data-lang="js" href="#">JavaScript</a><a class="dropdown-item" data-lang="yml" href="#">YAML</i></a><a class="dropdown-item" data-lang="coffee" href="#">CoffeeScript</a><a class="dropdown-item" data-lang="conf" href="#">Nginx / Redis <i>(.conf)</i></a><a class="dropdown-item" data-lang="python" href="#">Python</a><a class="dropdown-item" data-lang="php" href="#">PHP</a><a class="dropdown-item" data-lang="java" href="#">Java</a><a class="dropdown-item" data-lang="erlang" href="#">Erlang</a><a class="dropdown-item" data-lang="shell" href="#">Shell / Bash</a>
-      </div>
-    </span>
-                            <a id="editor-upload-image" title="上传图片" class="nav-link" href="#"><i class='fa fa-image'></i> </a>
-                            <a href="#" class="nav-link preview">预览</a>
+                            <ul>
+                                <li>请注意单词拼写，以及中英文排版，<a href="https://github.com/sparanoid/chinese-copywriting-guidelines" target="_blank">参考此页</a></li>
+                                <li>支持 Markdown 格式, **粗体**、~~删除线~~、`单行代码`, 更多语法请见这里 <a href="https://github.com/riku/Markdown-Syntax-CN/blob/master/syntax.md" target="_blank">Markdown 语法</a></li>
+                                <li>请勿发布不友善或者负能量的内容。与人为善，比聪明更重要！</li>
+                            </ul>
                         </div>
                     </div>
-
-                    <form id="new_reply" action="/topics/37750/replies" accept-charset="UTF-8" data-remote="true" method="post"><input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="authenticity_token" value="hL4ovWX/folImwBDjnMTYG/TzmFvaFWb+stMVkawizJvlJ8zvDGvv0vNgNr3ccm1zUqK1y6gReuQvcCW4t6NRQ==" />
-
+                    <form id="new_reply" action="{{route('comments.add')}}" accept-charset="UTF-8" data-remote="true" method="post">
+                        @csrf
+                        <input type="hidden" name="topics_id" value="{{$detail->id}}">
+                        <input type="hidden" name="quote_comments_id" value="0">
+                        <input type="hidden" name="quote_users_id" value="0">
                         <div class="form-group">
-    <textarea class="topic-editor form-control" rows="4" tabindex="1" name="reply[body]" id="reply_body">
-</textarea>
+                            <textarea class="topic-editor form-control" rows="4" tabindex="1" name="comment_content"></textarea>
                         </div>
-                        <input type="hidden" name="reply[reply_to_id]" id="reply_reply_to_id" />
-                        <div class="submit-buttons">
-                            <button type="submit" id="reply-button" class="btn btn-primary" tabindex="2", data-disable-with='提交回复'>提交回复</button>
-                            <span class="help-inline" style="padding-left: 5px;" title="或者 Ctrl + Enter"><kbd>Command</kbd> + <kbd>Enter</kbd></span>
-
-                            <div class="pull-right"><a href="/markdown" target="_blank">排版说明</a></div>
-                        </div>
+                        <div class="submit-buttons"><button type="submit" name="comment_add" class="btn btn-primary" tabindex="2", data-disable-with='提交回复'>提交回复</button></div>
                     </form>
                 </div>
             </div>
 
-            <div class="card">
-                <div class="card-header">相关话题</div>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item"><a href="/topics/37504">Erlang 入坑笔记 -- Erlang Process</a></li>
-                    <li class="list-group-item"><a href="/topics/27419">Puppet Hacking Guide —— Puppet 的启动：守护进程</a></li>
-                    <li class="list-group-item"><a href="/topics/33677">Erlang 的 RPC 模块代码分析</a></li>
-                    <li class="list-group-item"><a href="/topics/33987">Ruby 的并发, 进程, 线程, GIL, EventMachine, Celluloid</a></li>
-                    <li class="list-group-item"><a href="/topics/30208">Ruby 中的多进程与多线程</a></li>
-                </ul>
-            </div>
 
         </div>
 
@@ -172,4 +153,31 @@
     </div>
 
 </div>
+<script src="{{config('app.static_url')}}/common/js/jquery.form.min.js"></script>
+<script src="{{config('app.static_url')}}/common/js/spop.min.js"></script>
+<script>
+    $(function () {
+        $('#new_reply').ajaxForm({
+            dataType:'json',
+            error:function(ret){
+                var msg = ret.responseJSON.message+'<br><br>';
+                for (var key in ret.responseJSON.errors)
+                {
+                    msg += ret.responseJSON.errors[key][0]+'<br><br>';
+                }
+                spop({template: msg, position  : 'top-center', style: 'error', autoclose: 3000});
+            },
+            success:function (ret) {
+                if(ret.code!=0)
+                {
+                    spop({template: ret.msg, position  : 'top-center', style: 'error', autoclose: 3000});
+                }
+                else
+                {
+                    spop({template: ret.msg, position  : 'top-center', style: 'success', autoclose: 1000,onClose:function(){}});
+                }
+            }
+        });
+    })
+</script>
 @endsection

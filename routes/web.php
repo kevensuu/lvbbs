@@ -37,3 +37,5 @@ Route::get('/nodes/{id}-{page}.html', 'Www\TopicsController@nodes')->name('topic
 
 Route::get('/topics/{id}.html', 'Www\TopicsController@detail')->name('topics.detail')->where(['id' => '[0-9]+']);
 Route::get('/topics/{id}-{page}.html', 'Www\TopicsController@detail')->name('topics.detail.page')->where(['id' => '[0-9]+','page' => '[0-9]+']);
+
+Route::post('/comments/add', 'Www\CommentsController@add')->name('comments.add');
