@@ -33,7 +33,7 @@ Route::get('/newest.html', 'Www\TopicsController@newest')->name('topics.newest')
 Route::get('/newest-{page}.html', 'Www\TopicsController@newest')->name('topics.newest.page')->where(['page' => '[0-9]+']);
 
 Route::get('/nodes/{id}.html', 'Www\TopicsController@nodes')->name('topics.nodes')->where(['id' => '[0-9]+']);
-Route::get('/nodes/{id}-{$page}.html', 'Www\TopicsController@nodes')->name('topics.nodes.page')->where(['id' => '[0-9]+','page' => '[0-9]+']);
+Route::get('/nodes/{id}-{page}.html', 'Www\TopicsController@nodes')->name('topics.nodes.page')->where(['id' => '[0-9]+','page' => '[0-9]+']);
 
 Route::get('/topics/{id}.html', 'Www\TopicsController@detail')->name('topics.detail')->where(['id' => '[0-9]+']);
-Route::get('/topics/{id}-{$page}.html', 'Www\TopicsController@detail')->name('topics.detail.page')->where(['id' => '[0-9]+','page' => '[0-9]+']);
+Route::get('/topics/{id}-{page}.html', 'Www\TopicsController@detail')->name('topics.detail.page')->where(['id' => '[0-9]+','page' => '[0-9]+']);

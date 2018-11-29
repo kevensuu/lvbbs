@@ -4,11 +4,14 @@ namespace App\Http\Controllers\Www;
 
 use App\Models\Categorys;
 use App\Models\Topics;
+use App\Models\TopicsComments;
 use App\Models\TopicsDynamics;
 
 class TopicsController extends BaseController
 {
     public $pageSize = 25;
+
+    public $commentPageSize = 30;
 
     public function newest($page=1)
     {
@@ -133,6 +136,18 @@ class TopicsController extends BaseController
 
         $data['detail'] = Topics::where('is_delete', 0)->find($id);
         if(!$data['detail']) abort(404);
+
+        $topicsComments = new TopicsComments($id);
+        $where = [
+            ['topics_id', '=', $id],
+        ];
+        $data['commentsList'] = $topicsComments->where($where)
+            ->orderBy('id', 'asc')
+            ->offset(($page-1)*$this->commentPageSize)
+            ->limit($this->commentPageSize)
+            ->get();
+        $data['commentsTotal'] = $topicsComments->where($where)->count();
+        $data['fpage'] = $this->fpage('topics.detail.page', ['id'=>$id], $page, $data['commentsTotal'], $this->commentPageSize);
 
         return $this->display('www.topics.detail', $data);
     }

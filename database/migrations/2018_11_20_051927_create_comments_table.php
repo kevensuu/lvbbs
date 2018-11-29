@@ -22,7 +22,9 @@ class CreateCommentsTable extends Migration
                 $table->integer('topics_id')->unsigned()->default(0);
                 $table->integer('users_id')->unsigned()->default(0);
                 $table->integer('quote_id')->unsigned()->default(0);
+                $table->integer('quote_users_id')->unsigned()->default(0);
                 $table->text('content');
+                $table->integer('floor')->unsigned()->default(0);
                 $table->tinyInteger('is_delete')->unsigned()->default(0)->comment('0:未删除，1：已删除');
                 $table->tinyInteger('is_exam')->unsigned()->default(0)->comment('0:未审核，1：已审核');
                 $table->timestamps();

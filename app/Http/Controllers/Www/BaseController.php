@@ -22,6 +22,12 @@ class BaseController extends Controller
         {
             $cpage = $total_page;
         }
+
+        if($total_page <= 1)
+        {
+            return '';
+        }
+
         $page = '<ul class="pagination">';
 
         // 首页
