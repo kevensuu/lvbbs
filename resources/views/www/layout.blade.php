@@ -5,5 +5,6 @@
 @include('www.common.nav')
 @yield('content')
 @include('www.common.footer')
+@include('www.common.end')
 </body>
 </html>

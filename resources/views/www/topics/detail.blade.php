@@ -99,7 +99,10 @@
                         <div class="form-group">
                             <textarea class="topic-editor form-control" rows="4" tabindex="1" name="comment_content"></textarea>
                         </div>
-                        <div class="submit-buttons"><button type="submit" name="comment_add" class="btn btn-primary" tabindex="2", data-disable-with='提交回复'>提交回复</button></div>
+                        <div class="submit-buttons">
+                            <button type="submit" name="comment_add" class="btn btn-primary" tabindex="2", data-disable-with='提交回复'>提交回复</button>
+                            <span class="help-inline" style="padding-left: 5px;"><a id="preview" href="#"><kbd>预览</kbd></a></span>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -151,33 +154,5 @@
 
         </div>
     </div>
-
 </div>
-<script src="{{config('app.static_url')}}/common/js/jquery.form.min.js"></script>
-<script src="{{config('app.static_url')}}/common/js/spop.min.js"></script>
-<script>
-    $(function () {
-        $('#new_reply').ajaxForm({
-            dataType:'json',
-            error:function(ret){
-                var msg = ret.responseJSON.message+'<br><br>';
-                for (var key in ret.responseJSON.errors)
-                {
-                    msg += ret.responseJSON.errors[key][0]+'<br><br>';
-                }
-                spop({template: msg, position  : 'top-center', style: 'error', autoclose: 3000});
-            },
-            success:function (ret) {
-                if(ret.code!=0)
-                {
-                    spop({template: ret.msg, position  : 'top-center', style: 'error', autoclose: 3000});
-                }
-                else
-                {
-                    spop({template: ret.msg, position  : 'top-center', style: 'success', autoclose: 1000,onClose:function(){}});
-                }
-            }
-        });
-    })
-</script>
 @endsection

@@ -39,3 +39,7 @@ Route::get('/topics/{id}.html', 'Www\TopicsController@detail')->name('topics.det
 Route::get('/topics/{id}-{page}.html', 'Www\TopicsController@detail')->name('topics.detail.page')->where(['id' => '[0-9]+','page' => '[0-9]+']);
 
 Route::post('/comments/add', 'Www\CommentsController@add')->name('comments.add');
+Route::post('/comments/preview', 'Www\CommentsController@preview')->name('comments.preview');
+
+Route::get('/topic/new.html', 'Www\TopicsController@add')->name('topic.new');
+Route::post('/topic/add', 'Www\TopicsController@save')->name('topic.add');

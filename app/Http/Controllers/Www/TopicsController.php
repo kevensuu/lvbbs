@@ -11,7 +11,7 @@ class TopicsController extends BaseController
 {
     public $pageSize = 25;
 
-    public $commentPageSize = 30;
+    public $commentPageSize = 50;
 
     public function newest($page=1)
     {
@@ -150,5 +150,10 @@ class TopicsController extends BaseController
         $data['fpage'] = $this->fpage('topics.detail.page', ['id'=>$id], $page, $data['commentsTotal'], $this->commentPageSize);
 
         return $this->display('www.topics.detail', $data);
+    }
+
+    public function add()
+    {
+
     }
 }

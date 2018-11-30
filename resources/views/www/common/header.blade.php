@@ -1,6 +1,7 @@
 <head>
     <meta charset='utf-8' />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Ruby China</title>
     <link rel="stylesheet" media="screen" href="{{config('app.static_url')}}/css/app.css" />
     <link rel="stylesheet" media="screen" href="{{config('app.static_url')}}/Font-Awesome-4.7.0/css/font-awesome.min.css" />
